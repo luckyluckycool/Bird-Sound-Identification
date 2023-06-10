@@ -1,0 +1,83 @@
+<html>
+<head>
+    <title>Audio Loading</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        .example-1 .form-group {
+            padding: 1em;
+            margin: 1em
+        }
+
+        .example-1 input[type=file] {
+            outline: 0;
+            opacity: 0;
+            pointer-events: none;
+            user-select: none
+        }
+
+        .example-1 input[type=submit] {
+            margin-left: 2in;
+        }
+
+        .example-1 .label {
+            width: 120px;
+            border: 2px dashed grey;
+            border-radius: 5px;
+            display: block;
+            padding: 1.2em;
+            transition: border 300ms ease;
+            cursor: pointer;
+            text-align: center
+        }
+
+        .example-1 .label i {
+            display: block;
+            font-size: 42px;
+            padding-bottom: 16px
+        }
+
+        .example-1 .label i, .example-1 .label .title {
+            color: grey;
+            transition: 200ms color
+        }
+
+        .example-1 .label:hover {
+            border: 2px solid #000
+        }
+
+        .example-1 .label:hover i, .example-1 .label:hover .title {
+            color: #000
+        }
+
+        .center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+    </style>
+
+</head>
+<body>
+
+
+<div class="example-1 center" >
+    <div class="form-group">
+        <label class="label">
+            <form action="/success" method="post" enctype="multipart/form-data">
+
+                <input type="file" name="file"/>
+                <input type="submit" value="Identify">
+                Choose the file
+            </form>
+        </label>
+    </div>
+</div>
+
+
+
+</body>
+</html>
