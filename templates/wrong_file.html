@@ -11,16 +11,21 @@
             left: 50%;
             -ms-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
+            color: #FFFFFF;
+        }
+
+        .back {
+            background-image: url("{{ url_for('static', filename = 'bgimage.jpg')  }}");
         }
     </style>
 </head>
-<body>
+<body class="back">
 <div class="center">
-<h2>Uploaded file is not audio in .wav format</h2>
+    <h2>Uploaded file is not audio in .wav format</h2>
 
-<form action="/">
-   <button>Make new identification</button>
-  </form>
+    <form action="/">
+        <button>Make new identification</button>
+    </form>
 </div>
 </body>
 </html>

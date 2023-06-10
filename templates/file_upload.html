@@ -9,10 +9,14 @@
             left: 50%;
             -ms-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
+            color: #FFFFFF;
+        }
+        .back {
+            background-image: url("{{ url_for('static', filename = 'bgimage.jpg')  }}");
         }
     </style>
 </head>
-<body>
+<body class="back">
 <div class="center">
 <h2>The file '{{ file_path }}' {{ result }} Birds sound</h2>
 

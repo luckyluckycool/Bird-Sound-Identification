@@ -5,6 +5,7 @@ from fileinput import filename
 from flask import *
 import PredictionService
 
+
 app = Flask(__name__)
 
 
@@ -20,16 +21,15 @@ def success():
 
         if '.wav' in f.filename:
 
-            model = Model.import_model('tuned')
-
             f.save(f.filename)
 
-            prediction = PredictionService.predict_audio(f.filename, model)
+            prediction_service = PredictionService.Prediction()
+            prediction = prediction_service.predict_audio(f.filename)
 
-            print(prediction)
+            #print(prediction)
 
             result = 'contains' if prediction == 1 else 'does not contain'
-            print(f.filename)
+            #print(f.filename)
 
             return render_template("file_upload.html", result=result, file_path=f.filename)
         else:
