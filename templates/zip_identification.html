@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Wrong file</title>
+    <title>Directory identification result</title>
     <style>
         .center {
             margin: 0;
@@ -21,9 +19,17 @@
 </head>
 <body class="back">
 <div class="center">
-    <h2>Uploaded file is not audio in .wav format</h2>
+    <h2>The bird sound was detected {{ result }} times in '{{ file_path }}' directory</h2>
+    {% if skipped_files|length > 0 %}
+        <h2>Some files were skipped because of wrong format:</h2>
+        <ul>
+            {% for file in skipped_files %}
+                <li>{{ file }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 
-    <form action="/">
+    <form action="/" method="get">
         <button>Make new identification</button>
     </form>
 </div>
