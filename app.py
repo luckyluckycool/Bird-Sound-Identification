@@ -6,6 +6,7 @@ from distutils.log import debug
 from fileinput import filename
 from flask import *
 import PredictionService
+import shutil
 
 app = Flask(__name__)
 predictionService: PredictionService = None
@@ -36,11 +37,14 @@ def success():
             os.makedirs(temp_dir_path, exist_ok=True)
             file_path = os.path.join(temp_dir_path, f.filename).replace('\\', '/')
             f.save(file_path)
+            zip_files_path = temp_dir_path + '/' + os.path.splitext(os.path.basename(f.filename))[0]
+            os.makedirs(zip_files_path, exist_ok=True)
             with zipfile.ZipFile(file_path, 'r') as zip_ref:
-                zip_ref.extractall(temp_dir_path)
+                zip_ref.extractall(zip_files_path)
             os.remove(file_path)
             result, skipped_files = prediction_service.predict_territory(
-                temp_dir_path + f'/{os.path.splitext(os.path.basename(f.filename))[0]}/')
+                zip_files_path)
+            shutil.rmtree(zip_files_path)
             return render_template("zip_identification.html", result=result, file_path=f.filename,
                                    skipped_files=skipped_files)
         else:

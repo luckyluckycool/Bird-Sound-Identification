@@ -83,7 +83,7 @@ class PredictionService:
             if '.wav' not in filename:
                 skipped_files.append(filename)
                 continue
-            prob_temp = self.predict_audio(directory_path + filename)
+            prob_temp = self.predict_audio(directory_path + '/' + filename)
             if int(np.round(prob_temp)) == 1:
                 true_count += 1
             print(f'Probability of sample {filename} - {prob_temp}')
