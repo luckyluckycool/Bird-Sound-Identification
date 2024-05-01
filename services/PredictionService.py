@@ -7,9 +7,6 @@ from keras.applications.resnet import preprocess_input
 from matplotlib import pyplot as plt
 from scipy import signal
 
-import Model
-
-
 def soundPath(id):
     return f'/kaggle/input/bird-voice-detection/ff1010bird_wav/wav/{id}.wav'
 

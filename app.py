@@ -1,11 +1,7 @@
 import os
 import zipfile
-import Model
-from flask import Flask
-from distutils.log import debug
-from fileinput import filename
 from flask import *
-import PredictionService
+from services import PredictionService
 import shutil
 
 app = Flask(__name__)

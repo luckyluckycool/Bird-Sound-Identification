@@ -1,0 +1,5 @@
+AREA_DETECTION_RESULT_TABLE_NAME = 'area_detection_results'
+RESULT_ID_COLUMN = 'ID_result'
+AREA_ID_COLUMN = 'ID_area'
+AREA_DETECTION_RESULT_COLUMN = 'area_detection_result'
+AREA_DETECTION_TIME_COLUMN = 'area_detection_time'

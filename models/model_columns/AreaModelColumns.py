@@ -1,0 +1,8 @@
+AREA_TABLE_NAME = 'area_locations'
+AREA_ID_COLUMN = 'ID_area'
+LOCATION_ID1_COLUMN = 'ID_location1'
+LOCATION_ID2_COLUMN = 'ID_location2'
+LOCATION_ID3_COLUMN = 'ID_location3'
+LOCATION_ID4_COLUMN = 'ID_location4'
+LOCATION_ID5_COLUMN = 'ID_location5'
+LOCATION_ID6_COLUMN = 'ID_location6'
