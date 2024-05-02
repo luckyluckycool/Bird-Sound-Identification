@@ -1,5 +1,5 @@
 DETECTION_RESULTS_TABLE_NAME = 'detection_results'
-ID_RESULT_COLUMN = 'ID_result'
+ID_DETECTION_RESULT_COLUMN = 'ID_detection_result'
 LOCATION_COLUMN = 'location'
-PREDICTION_RESULT_COLUMN = 'prediction_result'
 DETECTION_TIME_COLUMN = 'detection_time'
+AREA_COMPUTED_COLUMN = 'area_computed'

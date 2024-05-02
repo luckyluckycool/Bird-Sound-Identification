@@ -11,6 +11,7 @@
             transform: translate(-50%, -50%);
             color: #FFFFFF;
         }
+
         .back {
             background-image: url("{{ url_for('static', filename = 'image3.jpg')  }}");
         }
@@ -18,11 +19,14 @@
 </head>
 <body class="back">
 <div class="center">
-<h2>File '{{ file_path }}' {{ result }} Birds sound</h2>
+    <h2>File '{{ file_path }}' {{ result }} Birds sound</h2>
 
-<form action="/">
-   <button>Make new identification</button>
-  </form>
+    <form action="/fileIdentification">
+        <button>Make new identification</button>
+    </form>
+    <form action="/">
+        <button>Return to menu</button>
+    </form>
 </div>
 </body>
 </html>

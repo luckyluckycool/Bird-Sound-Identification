@@ -5,43 +5,23 @@ from datetime import datetime
 from sqlalchemy import Column, INTEGER, SMALLINT, Boolean, TIMESTAMP
 from sqlalchemy.orm import declarative_base
 
-from models.model_columns.DetectionResultModelColumns import DETECTION_RESULTS_TABLE_NAME, ID_RESULT_COLUMN, \
-    LOCATION_COLUMN, PREDICTION_RESULT_COLUMN, DETECTION_TIME_COLUMN
+from models.model_columns.DetectionResultModelColumns import DETECTION_RESULTS_TABLE_NAME, ID_DETECTION_RESULT_COLUMN, \
+    LOCATION_COLUMN, DETECTION_TIME_COLUMN, AREA_COMPUTED_COLUMN
 
 Base = declarative_base()
 
 
-class PredictionResultModel(Base):
+class DetectionResultModel(Base):
     __tablename__ = DETECTION_RESULTS_TABLE_NAME
-    id = Column(ID_RESULT_COLUMN, INTEGER, primary_key=True)
+    detection_result_id = Column(ID_DETECTION_RESULT_COLUMN, INTEGER, primary_key=True)
     location = Column(LOCATION_COLUMN, SMALLINT)
-    predictionResult = Column(PREDICTION_RESULT_COLUMN, Boolean)
-    detectionTime = Column(DETECTION_TIME_COLUMN, TIMESTAMP)
+    detection_time = Column(DETECTION_TIME_COLUMN, TIMESTAMP)
+    area_computed = Column(AREA_COMPUTED_COLUMN, Boolean)
 
-    def __init__(self, location: int, predictionResult: bool):
+    def __init__(self, location: int, detection_time: datetime, area_computed: bool):
         self.location = location
-        self.predictionResult = predictionResult
-
-    def getLocation(self) -> int:
-        return self.location
-
-    def setLocation(self, location: int) -> PredictionResultModel:
-        self.location = location
-        return self
-
-    def getPredictionResult(self) -> bool:
-        return self.predictionResult
-
-    def setPredictionResult(self, predictionResult: bool) -> PredictionResultModel:
-        self.predictionResult = predictionResult
-        return self
-
-    def getDetectionTime(self) -> datetime:
-        return self.detectionTime
-
-    def setDetectionTime(self, detectionTime: datetime) -> PredictionResultModel:
-        self.detectionTime = detectionTime
-        return self
+        self.detection_time = detection_time
+        self.area_computed = area_computed
 
     def __str__(self):
-        return f'Location = {self.location}, result = {self.predictionResult}, time = {self.detectionTime}'
+        return f'Location = {self.location}, time = {self.detection_time}'

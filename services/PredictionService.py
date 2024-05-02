@@ -7,6 +7,9 @@ from keras.applications.resnet import preprocess_input
 from matplotlib import pyplot as plt
 from scipy import signal
 
+from services.ModelService import ModelService
+
+
 def soundPath(id):
     return f'/kaggle/input/bird-voice-detection/ff1010bird_wav/wav/{id}.wav'
 
@@ -16,16 +19,12 @@ def preprocess(images, labels):
 
 
 class PredictionService:
-    model = None
+    modelService: ModelService
 
-    def __init__(self, model=None):
-        if self.model is None:
-            if model is None:
-                self.model = Model.import_model('tuned')
-            else:
-                self.model = model
+    def __init__(self):
+        self.modelService = ModelService('tuned')
 
-    def coverting_to_spectrogram(self, absolute_path, high_freq):
+    def converting_to_spectrogram(self, absolute_path, high_freq):
         plt.rcParams["figure.figsize"] = [7.50, 3.50]
         plt.rcParams["figure.autolayout"] = True
         fig, ax = plt.subplots()
@@ -58,7 +57,7 @@ class PredictionService:
 
     def predict_audio(self, path, preprocess=False):
 
-        self.coverting_to_spectrogram(path, high_freq=True)
+        self.converting_to_spectrogram(path, high_freq=True)
         image = tf.keras.utils.load_img(path=f'/to_predict/{os.path.basename(path)}.png', target_size=(256, 256),
                                         interpolation='bilinear')
         input_arr = tf.keras.utils.img_to_array(image)
@@ -67,7 +66,7 @@ class PredictionService:
         if preprocess:
             input_arr = preprocess_input(input_arr)
 
-        y_pred = self.model.predict(input_arr)
+        y_pred = self.modelService.get_model().predict(input_arr)
         # y_pred = int(np.round(y_pred[0][0]))
         return y_pred[0][0]
 

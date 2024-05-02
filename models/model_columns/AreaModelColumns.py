@@ -1,4 +1,4 @@
-AREA_TABLE_NAME = 'area_locations'
+AREA_TABLE_NAME = 'area'
 AREA_ID_COLUMN = 'ID_area'
 LOCATION_ID1_COLUMN = 'ID_location1'
 LOCATION_ID2_COLUMN = 'ID_location2'

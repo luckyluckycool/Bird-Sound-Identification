@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Migration map</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+          crossorigin="anonymous">
+    <style>
+        .center {
+            display: flex;
+            justify-content: center;
+            margin-top: 5px;
+        }
+
+        .horizontal-list {
+            display: flex; /* Використовуємо flexbox */
+            list-style-type: none; /* Забираємо маркери списку */
+            padding: 0; /* Забираємо внутрішні відступи */
+            /* Забираємо зовнішні відступи */
+            margin: 1px 0 0;
+            justify-content: center; /* Вирівнюємо по центру */
+        }
+
+        .horizontal-list li {
+            margin-right: 5px; /* Зовнішні відступи між елементами */
+        }
+    </style>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfXMoxFihaFS_L1zSyRbnJSg5z8730FCI&callback=initMap"
+            type="text/javascript"></script>
+    <script type="text/javascript">
+        function initMap() {
+            const colors = {
+                0: "#FF0000",
+                1: "#FF0000",
+                2: "#FF0000",
+                3: "#FFFF00",
+                4: "#FFFF00",
+                5: "#00FF00",
+                6: "#00FF00",
+            };
+            const centroid = {{ centroid }}
+            console.log(centroid)
+            const map = new google.maps.Map(document.getElementById("map"), {
+                center: {lat: centroid[0], lng: centroid[1]},
+                zoom: 11,
+            });
+            const areaLocations = {{ areas }};
+            const areaDetections = {{ areaDetections }};
+            for (const key in areaLocations) {
+                const areaLocation = areaLocations[key];
+                let path = [];
+                for (const locationKey in areaLocation) {
+                    const location = areaLocation[locationKey];
+                    path.push({lat: location[0], lng: location[1]});
+                }
+                const area = new google.maps.Polygon({
+                    path: path,
+                    geodesic: false,
+                    strokeColor: "#FF0000",
+                    fillColor: colors[areaDetections[key] || 0],
+                    strokeOpacity: 1.0,
+                    strokeWeight: 2,
+                });
+                area.setMap(map);
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="map" style="width:100vw; height:90vh;"></div>
+<ul class="horizontal-list">
+    {% for time in times %}
+        <form action="/migrationMap">
+            <input type="hidden" name="time" value="{{ time }}">
+            <button>{{ time }}</button>
+        </form>
+    {% endfor %}
+</ul>
+<div class="center">
+    <form action="/">
+        <button>Return to menu</button>
+    </form>
+</div>
+</body>
+</html>
