@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from sqlalchemy import Column, SMALLINT
 from sqlalchemy.orm import declarative_base
 
@@ -32,5 +30,6 @@ class AreaModel(Base):
                 self.location_id6]
 
     def __str__(self):
-        return (f'area-{self.area_id}: [{self.location_id1}, {self.location_id2}, {self.location_id3}, {self.location_id4},'
-                f' {self.location_id5}, {self.location_id6}]')
+        return (
+            f'area-{self.area_id}: [{self.location_id1}, {self.location_id2}, {self.location_id3}, {self.location_id4},'
+            f' {self.location_id5}, {self.location_id6}]')

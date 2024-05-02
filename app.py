@@ -33,12 +33,7 @@ def success():
         if f.filename.endswith('.wav'):
             f.save(f.filename)
             prediction = prediction_service.predict_audio(f.filename)
-
-            # print(prediction)
-
             result = 'contains' if prediction == 1 else 'does not contain'
-            # print(f.filename)
-
             return render_template("file_upload.html", result=result, file_path=f.filename)
         elif '.zip' in f.filename:
             temp_dir_path = 'temp'

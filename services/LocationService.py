@@ -28,6 +28,6 @@ class LocationService:
             location_dict = {}
             for index, location_id in enumerate(area.get_locations()):
                 location_dict[index] = next(([location.latitude, location.longitude] for location in locations if
-                                            location.location_id == location_id), None)
+                                             location.location_id == location_id), None)
             areas_dict[area.area_id] = location_dict
         return areas_dict, [lat_c, lng_c]

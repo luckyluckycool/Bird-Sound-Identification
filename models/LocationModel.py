@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from sqlalchemy import Column, SMALLINT, DOUBLE
 from sqlalchemy.orm import declarative_base
 
