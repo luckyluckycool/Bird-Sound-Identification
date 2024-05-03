@@ -5,28 +5,34 @@
     <title>Bird sound identification system</title>
     <style>
         .center {
-            margin: 0;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            -ms-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-            color: #FFFFFF;
-            margin-inside: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 97vh;
+            flex-direction: column;
+        }
+        .center > * {
+            margin-bottom: 20px;
         }
 
         .back {
             background-image: url("{{ url_for('static', filename = 'image3.jpg')  }}");
         }
+
+        .button {
+        font-size: 20px; /* Збільшує розмір тексту кнопки */
+        padding: 10px 20px; /* Збільшує внутрішній простір кнопки */
+    }
     </style>
 </head>
 <body class="back">
 <div class="center">
+    <h1 style="color: #FFFFFF">Bird Migration and Identification Service</h1>
     <form action="/fileIdentification">
-        <button>Check bird sound in file</button>
+        <button class="button">Check audio file for bird sound</button>
     </form>
     <form action="/migrationMap">
-        <button>Look on migrations</button>
+        <button class="button">View migrations</button>
     </form>
 </div>
 </body>
