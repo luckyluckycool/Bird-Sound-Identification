@@ -11,7 +11,7 @@ class AreaDao(AbstractDao):
         session.close()
         return result
 
-    def get_areas_by_locations_id(self, location_ids: list[int]) -> list[AreaModel]:
+    def get_areas_by_locations_ids(self, location_ids: list[int]) -> list[AreaModel]:
         session = self.get_session()
         result = session.query(AreaModel).filter(or_(
             AreaModel.location_id1.in_(location_ids),

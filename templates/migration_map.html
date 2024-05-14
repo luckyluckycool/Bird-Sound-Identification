@@ -33,7 +33,7 @@
     <script type="text/javascript">
         function initMap() {
             const colors = {
-                0: "#FF0000",
+                0: "#000000",
                 1: "#FF0000",
                 2: "#FF0000",
                 3: "#FFFF00",
@@ -74,7 +74,7 @@
 <ul class="horizontal-list">
     {% for time in times %}
         <form action="/migrationMap">
-            <input type="hidden" name="time" value="{{ time }}">
+            <input type="hidden" name="time" value="{{ time|replace(" ", "T") }}">
             <button>{{ time }}</button>
         </form>
     {% endfor %}
@@ -82,6 +82,10 @@
 <div class="center">
     <form action="/">
         <button>Return to menu</button>
+    </form>
+    <form action="/computeAreasDetections">
+        <input type="hidden" name="isFromMap" value="True">
+        <button>Compute areas migrations</button>
     </form>
 </div>
 </body>

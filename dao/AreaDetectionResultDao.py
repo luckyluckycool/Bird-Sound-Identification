@@ -1,13 +1,11 @@
-from datetime import datetime, timedelta
-
-from sqlalchemy.sql import between
+from datetime import datetime
 
 from dao.AbstractDao import AbstractDao
 from models.AreaDetectionResultModel import AreaDetectionResultModel
 
 
 class AreaDetectionResultDao(AbstractDao):
-    def insert_area_detection_results(self, area_detection_results: list):
+    def insert_area_detection_results(self, area_detection_results: list[AreaDetectionResultModel]):
         session = self.get_session()
         session.add_all(area_detection_results)
         session.commit()
@@ -22,11 +20,17 @@ class AreaDetectionResultDao(AbstractDao):
 
     def get_times(self, time: datetime):
         session = self.get_session()
-        result = self.get_session().query(AreaDetectionResultModel.area_detection_time).filter(
-            between(AreaDetectionResultModel.area_detection_time, time - timedelta(minutes=10),
-                    time + timedelta(minutes=10))).distinct().all()
+        result = self.get_session().query(AreaDetectionResultModel.area_detection_time).distinct().order_by(
+            AreaDetectionResultModel.area_detection_time).all()
         session.close()
-        return result
+        result = [res[0] for res in result]
+        index = result.index(time)
+        times = [result[index]]
+        if index - 1 >= 0:
+            times.insert(0, result[index - 1])
+        if index + 1 < len(result):
+            times.append(result[index + 1])
+        return times
 
     def get_all_times(self):
         session = self.get_session()

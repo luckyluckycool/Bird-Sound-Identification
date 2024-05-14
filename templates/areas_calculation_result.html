@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Identification result</title>
+    <title>Areas computing result</title>
     <style>
         .center {
             margin: 0;
@@ -15,17 +15,24 @@
         .back {
             background-image: url("{{ url_for('static', filename = 'image3.jpg')  }}");
         }
+
+        .button {
+        font-size: 20px;
+        padding: 10px 20px;
+
     </style>
 </head>
 <body class="back">
 <div class="center">
-    <h2>File '{{ file_path }}' {{ result }} Birds sound</h2>
-
-    <form action="/fileIdentification">
-        <button>Make new identification</button>
+    <h2>{{ detectionResults }} results were processed</h2>
+    <form action="/locationIdentification">
+        <button class="button">Make new location identification</button>
+    </form>
+        <form action="/migrationMap">
+        <button class="button">View map</button>
     </form>
     <form action="/">
-        <button>Return to menu</button>
+        <button class="button">Return to menu</button>
     </form>
 </div>
 </body>

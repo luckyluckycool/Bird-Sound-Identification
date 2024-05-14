@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Wrong file format</title>
+    <title>Identification result</title>
     <style>
         .center {
             display: flex;
@@ -28,7 +26,7 @@
 </head>
 <body class="back">
 <div class="center">
-    <h2>Uploaded file is not audio in .wav format</h2>
+    <h1 style="color: #FFFFFF">File '{{ file_path }}' {{ result }} Birds sound</h1>
     <form action="/fileIdentification">
         <button class="button">Make new identification</button>
     </form>

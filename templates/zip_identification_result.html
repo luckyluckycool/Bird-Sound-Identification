@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Directory identification result</title>
+    <title>Archive identification result</title>
     <style>
         .center {
             margin: 0;
@@ -15,11 +15,16 @@
         .back {
             background-image: url("{{ url_for('static', filename = 'image3.jpg')  }}");
         }
+
+        .button {
+            font-size: 20px;
+            padding: 10px 20px;
+        }
     </style>
 </head>
 <body class="back">
 <div class="center">
-    <h2>The bird sound was detected {{ result }} times in '{{ file_path }}' directory</h2>
+    <h2>The bird sound was detected {{ result }} times in '{{ file_path }}' archive</h2>
     {% if skipped_files|length > 0 %}
         <h2>Some files were skipped because of wrong format:</h2>
         <ul>
@@ -30,10 +35,10 @@
     {% endif %}
 
     <form action="/fileIdentification">
-        <button>Make new identification</button>
+        <button class="button">Make new identification</button>
     </form>
     <form action="/">
-        <button>Return to menu</button>
+        <button class="button">Return to menu</button>
     </form>
 </div>
 </body>

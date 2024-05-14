@@ -31,7 +31,7 @@ class AreaService:
         area_detections = []
         for key, value in time_groups.items():
             locations_ids = [x.location for x in value]
-            areas = self.areaDao.get_areas_by_locations_id(locations_ids)
+            areas = self.areaDao.get_areas_by_locations_ids(locations_ids)
             for area in areas:
                 area_locations = area.get_locations()
                 area_counter = 0
@@ -42,6 +42,7 @@ class AreaService:
                                                                 area_detection_time=key))
         self.areaDetectionResultDao.insert_area_detection_results(area_detections)
         self.detectionResultDao.update_area_computed(detection_result_ids)
+        return len(detection_results)
 
     def get_area_detection_results_by_time(self, time: datetime):
         area_detections = self.areaDetectionResultDao.get_area_detection_results_by_time(time)
@@ -51,7 +52,7 @@ class AreaService:
         return area_detections_dict
 
     def get_times_for_map(self, time: datetime):
-        return [str(t[0]).replace(" ", "T") for t in self.areaDetectionResultDao.get_times(time)]
+        return self.areaDetectionResultDao.get_times(time)
 
     def get_all_times(self):
         return [time[0] for time in self.areaDetectionResultDao.get_all_times()]

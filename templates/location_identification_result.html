@@ -1,0 +1,41 @@
+<html>
+<head>
+    <title>Location identification result</title>
+    <style>
+        .center {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            color: #FFFFFF;
+        }
+
+        .back {
+            background-image: url("{{ url_for('static', filename = 'image3.jpg')  }}");
+        }
+        .button {
+        font-size: 20px;
+        padding: 10px 20px;
+
+    </style>
+</head>
+<body class="back">
+<div class="center">
+    <h2> {{ detection_results }}/{{ all_files }} files contain bird sounds!</h2>
+    {% if bad_files > 0 %}
+    <h2> {{ bad_files }} weren't processed because of missing or wrong format</h2>
+    {% endif %}
+    <form action="/computeAreasDetections">
+        <button class="button">Compute areas detections</button>
+    </form>
+    <form action="/locationIdentification">
+        <button class="button">Insert new audio location data</button>
+    </form>
+    <form action="/">
+        <button class="button">Return to menu</button>
+    </form>
+</div>
+</body>
+</html>

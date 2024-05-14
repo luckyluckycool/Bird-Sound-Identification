@@ -19,3 +19,9 @@ class DetectionResultDao(AbstractDao):
         session.execute(stmt)
         session.commit()
         session.close()
+
+    def insert_detection_results(self, detection_results: list[DetectionResultModel]):
+        session = self.get_session()
+        session.add_all(detection_results)
+        session.commit()
+        session.close()

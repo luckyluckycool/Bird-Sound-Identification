@@ -4,12 +4,12 @@ from dao.LocationDao import LocationDao
 
 
 class LocationService:
-    predictionResultDao: DetectionResultDao
+    detectionResultDao: DetectionResultDao
     areaDao: AreaDao
     locationDao: LocationDao
 
     def __init__(self):
-        self.predictionResultDao = DetectionResultDao()
+        self.detectionResultDao = DetectionResultDao()
         self.areaDao = AreaDao()
         self.locationDao = LocationDao()
 

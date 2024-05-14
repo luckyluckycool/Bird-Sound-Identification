@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Wrong file format</title>
+    <title>Wrong zip file</title>
     <style>
         .center {
             display: flex;
@@ -28,9 +28,9 @@
 </head>
 <body class="back">
 <div class="center">
-    <h2>Uploaded file is not audio in .wav format</h2>
-    <form action="/fileIdentification">
-        <button class="button">Make new identification</button>
+    <h1 style="color: #FFFFFF">Processing was interupted because {{ error }}</h1>
+    <form action="/locationIdentification">
+        <button class="button">Insert new zip file with audio and annotation</button>
     </form>
     <form action="/">
         <button class="button">Return to menu</button>

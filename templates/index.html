@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Bird sound identification system</title>
+    <title>Bird migration and identification system</title>
     <style>
         .center {
             display: flex;
@@ -20,8 +20,8 @@
         }
 
         .button {
-        font-size: 20px; /* Збільшує розмір тексту кнопки */
-        padding: 10px 20px; /* Збільшує внутрішній простір кнопки */
+        font-size: 20px;
+        padding: 10px 20px;
     }
     </style>
 </head>
@@ -30,6 +30,9 @@
     <h1 style="color: #FFFFFF">Bird Migration and Identification Service</h1>
     <form action="/fileIdentification">
         <button class="button">Check audio file for bird sound</button>
+    </form>
+        <form action="/locationIdentification">
+        <button class="button">Insert audios with annotations</button>
     </form>
     <form action="/migrationMap">
         <button class="button">View migrations</button>
